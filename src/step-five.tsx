@@ -1,14 +1,30 @@
 import * as React from "react";
 import { Button } from "./components/ui/button";
-import { TemperatureType } from "./types";
-import { Form } from "./components/ui/form";
+import { TemperatureType, UserData } from "./types";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "./components/ui/form";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Input } from "./components/ui/input";
 
 const FormSchema = z.object({
-  temperature: z.number(),
+  temperature: z.coerce.number({
+    invalid_type_error: "Podaj wartość liczbową.",
+  }),
 });
+
+interface Props {
+  setStep: any;
+  setUserData: (userData: UserData) => void;
+  userData: UserData;
+}
 
 const StepFive: React.FC<Props> = ({ setStep, setUserData, userData }) => {
   const [temperatureType, setTemperatureType] =
@@ -26,7 +42,7 @@ const StepFive: React.FC<Props> = ({ setStep, setUserData, userData }) => {
     setUserData({
       ...userData,
       temperatureType,
-      temperatureValue,
+      temperatureValue: temperatureValue,
     });
   };
 
@@ -41,6 +57,20 @@ const StepFive: React.FC<Props> = ({ setStep, setUserData, userData }) => {
             Temperatura gruntu
           </Button>
         </div>
+        <FormField
+          control={form.control}
+          name="temperature"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Temperatura</FormLabel>
+              <FormControl>
+                <Input placeholder="temperatura" {...field} />
+              </FormControl>
+              <FormMessage className="text-gray-700" />
+            </FormItem>
+          )}
+        />
+        <Button type="submit">Dalej</Button>
       </form>
     </Form>
   );

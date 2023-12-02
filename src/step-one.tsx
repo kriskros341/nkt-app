@@ -16,7 +16,6 @@ import * as z from "zod";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -30,9 +29,7 @@ interface Props {
   setUserData: (userData: UserData) => void;
 }
 const FormSchema = z.object({
-  metal: z.enum(["Cu", "Al"], {
-    required_error: "siema eniu",
-  }),
+  metal: z.enum(["Cu", "Al"]),
   type: z.string({
     required_error: "Please select an type to display.",
   }),
@@ -140,9 +137,11 @@ const StepOne: React.FC<Props> = ({
               </FormItem>
             )}
           />
-          <Button type="submit" className="text-black">
-            Dalej
-          </Button>
+          <div>
+            <Button type="submit" className="text-black ">
+              Dalej
+            </Button>
+          </div>
         </div>
       </form>
     </Form>

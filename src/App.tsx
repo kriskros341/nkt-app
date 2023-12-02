@@ -8,6 +8,8 @@ import ActionTitleLine from "./components/ActionTitleLine";
 import StepTwo from "./step-two";
 import StepThree from "./step-three";
 import StepFour from "./step-four";
+import StepFive from "./step-five";
+import StepSix from "./step-six";
 
 function App() {
   const [choice, setChoice] = React.useState<Choice>(copperChoice);
@@ -39,6 +41,20 @@ function App() {
     ),
     () => (
       <StepFour
+        setStep={setStep}
+        setUserData={setUserData}
+        userData={userData}
+      />
+    ),
+    () => (
+      <StepFive
+        setStep={setStep}
+        setUserData={setUserData}
+        userData={userData}
+      />
+    ),
+    () => (
+      <StepSix
         setStep={setStep}
         setUserData={setUserData}
         userData={userData}

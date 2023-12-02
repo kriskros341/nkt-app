@@ -15,9 +15,9 @@ export type InstallationMethod =
   | "D1"
   | "D2";
 
-export type ThermalResistivity = number;
-
 export type TemperatureType = "air" | "ground";
+
+export type ThermalResistivity = number;
 
 export type Choice = {
   metal: "Cu" | "Al";
@@ -30,7 +30,7 @@ export type UserData = {
   insulator?: Insulator;
   numberOfStrands?: NumberOfStrands;
   installationMethod?: InstallationMethod;
-  thermalResistivity?: ThermalResistivity;
   temperatureType?: TemperatureType;
   temperatureValue?: number;
+  thermalResistivity?: ThermalResistivity;
 };
