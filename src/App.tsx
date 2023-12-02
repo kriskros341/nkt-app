@@ -49,14 +49,18 @@ function App() {
   console.log(userData);
 
   return (
-    <>
-      <div className="flex flex-col items-center justify-center flex-1 gap-4">
-        <ActionTitleLine />
-        {steps[step]()}
-        <VerticalLine />
+    <main className="flex flex-col h-screen">
+      <div style={{flex: "100%"}} className="flex justify-center gap-4">
+        <div style={{ flex: 5 }} className="p-24">
+          <ActionTitleLine />
+          {steps[step]()}
+        </div>
+        <div style={{ flex: 4 }} className="sticky top-0 h-screen">
+          <VerticalLine step={step} setStep={setStep} />
+        </div>
       </div>
       <Footer />
-    </>
+    </main>
   );
 }
 
