@@ -1,35 +1,29 @@
 import fs from 'fs'
 
+
 // obwod: - "1 fazowy" | "3 fazowy"
 // metoda: - "A1", "A2", "B1", "B2"
 
 const getMatchingIndexes = (obj, key, value, indexes) => {
+    console.log(obj)
     if (!indexes) {
         indexes = obj[key].map((_, i) => i);
     }
-    const d = obj[key].reduce((acc, curr, index) => {
+    const newIndexes = obj[key].reduce((acc, curr, index) => {
         if (curr === value && indexes.includes(index)) {
             acc.push(index)
         }
         return acc
     }, [])
-    return d
+    return newIndexes
 }
 
-const dobierzWynik = (wobj, index) => {
-    return wobj.map(row => row[index+1])
-}
-
-const filter = (reference, csv, input) => {
+const getFilteredIndexes = (specification, input) => {
     let filteredIndexes = null;
     Object.entries(input).forEach(([key, val]) => {
-        filteredIndexes = getMatchingIndexes(csv, key, val, filteredIndexes)
+        filteredIndexes = getMatchingIndexes(specification, key, val, filteredIndexes)
     })
-    if (filteredIndexes.length !== 1) {
-        throw "wiecej niz 1 wwynik"
-    }
-    console.log("wybrany index: " + filteredIndexes[0])
-    return dobierzWynik(reference, filteredIndexes[0])
+    return filteredIndexes
 }
 
 const CSVtoObj = (csv) => {
@@ -40,28 +34,33 @@ const CSVtoObj = (csv) => {
     return obj
 }
 
-const test = (plik_parametry, plik_wyniki) => {
-    
-    const wejsicowe = fs.readFileSync(plik_parametry);
-    const wynikowe = fs.readFileSync(plik_wyniki);
-    const data = wejsicowe.toString().trim().split('\n').map(line => line.trim().split(';').map(str => str.trim()))
-    const referenceValues2d = wynikowe.toString().trim().split('\n').map(line => line.trim().split(';').map(str => str.trim()))
+const EXCEL_DELIMITER = ';'
+const SHEETS_DELIMITER = '\t'
 
-    const g = CSVtoObj(data)
-    
+const test = (specificationFilePath, referenceFilePath) => {
+
+    const specificationValues = fs.readFileSync(specificationFilePath);
+    const referenceValues = fs.readFileSync(referenceFilePath);
+    const specificationMatrix = specificationValues.toString().trim().split('\n').map(line => line.trim().split(SHEETS_DELIMITER).map(str => str.trim()));
+    const referenceMatrix = referenceValues.toString().trim().split('\n').map(line => line.trim().split(SHEETS_DELIMITER).map(str => str.trim()));
+
+    const specification = CSVtoObj(specificationMatrix);
+    const reference = CSVtoObj(referenceMatrix)
 
     const input = {
         "obwód": "1 fazowy",
-        "metoda referencyjna": "A2"
+        "metoda referencyjna": "A2",
+        "izolacja": "XLPE",
+        "rodzaj żyły (metal)": "Al."
     }
 
-    const i = filter(referenceValues2d, g, input)
-
-    console.log(i)
+    const indexes = getFilteredIndexes(specification, input)
+    console.log(indexes)
+    console.log(referenceMatrix.map((row) => row.filter((_, index) => indexes.includes(index-1))))
 }
 
 // const nazwa = "ydy"
+// const nazwa = "ntk"
+const nazwa = "yky"
 
-const nazwa = "ntk"
-
-test(`${nazwa}.csv`, `wyniki_${nazwa}.csv`)
+test(`SPECIFICATION.tsv`, `REFERENCE.tsv`)
