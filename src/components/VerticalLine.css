@@ -1,0 +1,7 @@
+.vertical-line {
+    position: absolute;
+    height: 100%;
+    width: 8%;
+    background-color: #FF8D07;
+    right: 5%;
+  }  

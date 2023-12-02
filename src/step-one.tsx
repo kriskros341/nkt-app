@@ -10,6 +10,7 @@ import {
 import { cn } from "./lib/utils";
 import { Choice } from "./types";
 import { aluminiumChoice, copperChoice } from "./const";
+import Footer from "./components/Footer" 
 
 interface Props {
   setStep: any;
@@ -57,8 +58,8 @@ const StepOne: React.FC<Props> = ({ setStep, choice, setChoice }) => {
         </SelectContent>
       </Select>
       <Button
-        onClick={() => setStep((step) => step + 1)}
-        className="text-black"
+        // onClick={() => setStep((step) => step + 1)}
+        // className="text-black"
       >
         Dalej
       </Button>
