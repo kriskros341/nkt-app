@@ -1,33 +1,14 @@
 import fs from 'fs'
 
-
-const jd = fs.readFileSync('ydy.csv');
-
-const data = jd.toString().trim().split('\n').map(line => line.trim().split(';').map(str => str.trim()))
-
-const keys = ["izolacja",
-"rodzaj",
-"temp_o",
-"temp_z",
-"nazwa",
-"obwod",
-"liczba zyl",
-"liczba zyl obciazonych",
-"metoda referencyjna"]
 // obwod: - "1 fazowy" | "3 fazowy"
 // metoda: - "A1", "A2", "B1", "B2"
 
-const toObj = (obj, indexes) => {
-    const temp = {}
-    Object.entries(obj).forEach(([key, values]) => {
-        temp[key] = values.filter((_, index) => indexes.includes(index))
-    })
-    return temp
-}
-
-const getMatchingIndexes = (obj, key, value) => {
+const getMatchingIndexes = (obj, key, value, indexes) => {
+    if (!indexes) {
+        indexes = obj[key].map((_, i) => i);
+    }
     const d = obj[key].reduce((acc, curr, index) => {
-        if (curr === value) {
+        if (curr === value && indexes.includes(index)) {
             acc.push(index)
         }
         return acc
@@ -35,27 +16,52 @@ const getMatchingIndexes = (obj, key, value) => {
     return d
 }
 
-const test = (obwod, metoda) => {
-    const g = {
-        [keys[0]]: data[0],
-        [keys[1]]: data[1],
-        [keys[2]]: data[2],
-        [keys[3]]: data[3],
-        [keys[4]]: data[4],
-        [keys[5]]: data[5],
-        [keys[6]]: data[6],
-        [keys[7]]: data[7],
-        [keys[8]]: data[8],
-    };
-
-    const filteredIndexes = getMatchingIndexes(g, "obwod", "1 fazowy");
-    const g2 = toObj(g, filteredIndexes)
-
-    const filteredIndexes2 = getMatchingIndexes(g2, "metoda referencyjna", "A1");
-    const g3 = toObj(g2, filteredIndexes2)
-
-    console.log(filteredIndexes2)
-
+const dobierzWynik = (wobj, index) => {
+    return wobj.map(row => row[index+1])
 }
 
-test("1 fazowy")
+const filter = (reference, csv, input) => {
+    let filteredIndexes = null;
+    Object.entries(input).forEach(([key, val]) => {
+        filteredIndexes = getMatchingIndexes(csv, key, val, filteredIndexes)
+    })
+    if (filteredIndexes.length !== 1) {
+        throw "wiecej niz 1 wwynik"
+    }
+    console.log("wybrany index: " + filteredIndexes[0])
+    return dobierzWynik(reference, filteredIndexes[0])
+}
+
+const CSVtoObj = (csv) => {
+    const obj = {};
+    csv.forEach((row) => {
+        obj[row[0]] = row.slice(1)
+    })
+    return obj
+}
+
+const test = (plik_parametry, plik_wyniki) => {
+    
+    const wejsicowe = fs.readFileSync(plik_parametry);
+    const wynikowe = fs.readFileSync(plik_wyniki);
+    const data = wejsicowe.toString().trim().split('\n').map(line => line.trim().split(';').map(str => str.trim()))
+    const referenceValues2d = wynikowe.toString().trim().split('\n').map(line => line.trim().split(';').map(str => str.trim()))
+
+    const g = CSVtoObj(data)
+    
+
+    const input = {
+        "obwód": "1 fazowy",
+        "metoda referencyjna": "A2"
+    }
+
+    const i = filter(referenceValues2d, g, input)
+
+    console.log(i)
+}
+
+// const nazwa = "ydy"
+
+const nazwa = "ntk"
+
+test(`${nazwa}.csv`, `wyniki_${nazwa}.csv`)
