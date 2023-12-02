@@ -1,0 +1,10 @@
+﻿izolacja;XLPE;XLPE;XLPE;XLPE;XLPE;XLPE;XLPE;XLPE;XLPE;XLPE;XLPE
+rodzaj żyły (metal);Cu;Cu;Cu;Cu;Cu;Cu;Cu;Cu;Cu;Cu;Cu
+temp. otoczenia (powietrza);30;30;30;30;30;30;30;30;30;30;30
+temp. żyły ;90;90;90;90;90;90;90;90;90;90;90
+przewód/kabel;N2XH 0,6/1kV;N2XH 0,6/1kV;N2XH 0,6/1kV;N2XH 0,6/1kV;N2XH 0,6/1kV;N2XH 0,6/1kV;N2XH 0,6/1kV;N2XH 0,6/1kV;N2XH 0,6/1kV;N2XH 0,6/1kV;N2XH 0,6/1kV
+obwód; 1 fazowy;3 fazowy; 1 fazowy;3 fazowy; 1 fazowy;3 fazowy; 1 fazowy;3 fazowy;3 fazowy;3 fazowy;3 fazowy
+liczba żył w kablu;3;4 lub 5;3;4 lub 5;3;4 lub 5;3;4 lub 5;1;1;1
+liczba żył obciążonych prądowo;2;3;2;3;2;3;2;3;3;3;3
+sposób instalacji /ułożenia;kabel wielożyłowy bezpośrednio w ścianie izolowanej cieplnie;kabel wielożyłowy bezpośrednio w ścianie izolowanej cieplnie;kabel wielożyłowy w rurze instalacyjnej w ścianie izolowanej cieplnie;kabel wielożyłowy w rurze instalacyjnej w ścianie izolowanej cieplnie;kabel wielożyłowy w rurze instalacyjnej/listwie naściennej na ścianie murowanej lub drewnianej;kabel wielożyłowy w rurze instalacyjnej/listwie naściennej na ścianie murowanej lub drewnianej;kabel wielożyłowy w powietrzu (korytko perforowane, siatkowe);kabel wielożyłowy w powietrzu (korytko perforowane, siatkowe);układ 3 kabli jednożyłowych w rurze instalacyjnej w izolowanej cieplnie ścianie;układ 3 kabli jednożyłowych w rurze istalacyjnej/ listwie naściennej na ścianie murowanej lub drewnianej;Układ 3 kabli jednożyłowych (układ trójkąt) w powietrzu korytko perforowane/siatkowe
+metoda referencyjna;A1;A1;A2 ;A2;B2;B2;E;E;A1;B1;F
