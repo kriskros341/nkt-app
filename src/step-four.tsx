@@ -63,7 +63,7 @@ const StepFour: React.FC<Props> = ({ setStep, setUserData, userData }) => {
             onClick={() => setInstallationMethod(installationM.header)}
             className={cn(
               "flex items-center justify-start p-6 py-[20px]",
-              installationMethod === installationM.header && "bg-[#5A8EED]",
+               installationMethod === installationM.header ? "bg-[#00215F] text-white" : "",
             )}
           >
             <div className="flex flex-wrap items-center justify-between">
@@ -71,7 +71,10 @@ const StepFour: React.FC<Props> = ({ setStep, setUserData, userData }) => {
                 {installationM.header} -
               </div>
               <div className="flex flex-wrap items-center text-gray-800 text-md">
-                {installationM.description}
+                <span className={cn(installationMethod === installationM.header ? "text-white" : "")}>
+                  {installationM.description}
+
+                </span>
               </div>
             </div>
           </Button>

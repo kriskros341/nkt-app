@@ -26,11 +26,14 @@ const StepTwo: React.FC<Props> = ({ setStep, setUserData, userData }) => {
 
   return (
     <>
-      <div className="flex flex-col gap-6 mt-8">
+      <div className="flex flex-col gap-6 mt-8 ">
         <Label className="text-xl">Wybierz rodzaj tworzywa izolacyjnego</Label>
         <div className="flex gap-6 mb-6">
           <Button
-            className={cn("p-6 text-xl", insulator === "pvc" && "bg-[#5A8EED]")}
+            className={cn(
+              "p-6 text-xl",
+              insulator === "pvc" ? "bg-[#00215F] text-white" : "",
+            )}
             value="pvc"
             onClick={() => setInsulator("pvc")}
           >
@@ -39,7 +42,7 @@ const StepTwo: React.FC<Props> = ({ setStep, setUserData, userData }) => {
           <Button
             className={cn(
               "p-6 text-xl",
-              insulator === "xlpe" && "bg-[#5A8EED]",
+              insulator === "xlpe" ? "bg-[#00215F] text-white" : "",
             )}
             value="xlpe"
             onClick={() => setInsulator("xlpe")}
@@ -49,7 +52,7 @@ const StepTwo: React.FC<Props> = ({ setStep, setUserData, userData }) => {
           <Button
             className={cn(
               "p-6 text-xl",
-              insulator === "b2ca" && "bg-[#5A8EED]",
+              insulator === "b2ca" ? "bg-[#00215F] text-white" : "",
             )}
             value="b2ca"
             onClick={() => setInsulator("b2ca")}
@@ -62,7 +65,7 @@ const StepTwo: React.FC<Props> = ({ setStep, setUserData, userData }) => {
           <Button
             className={cn(
               "p-6 text-xl",
-              numberOfStrands === "2" && "bg-[#5A8EED]",
+              numberOfStrands === "2" ? "bg-[#00215F] text-white" : "",
             )}
             value="2"
             onClick={() => setNumberOfStrands("2")}
@@ -72,7 +75,7 @@ const StepTwo: React.FC<Props> = ({ setStep, setUserData, userData }) => {
           <Button
             className={cn(
               "p-6 text-xl",
-              numberOfStrands === "3-wire" && "bg-[#5A8EED]",
+              numberOfStrands === "3-wire" ? "bg-[#00215F] text-white" : "",
             )}
             value="3-wire"
             onClick={() => setNumberOfStrands("3-wire")}
@@ -82,7 +85,7 @@ const StepTwo: React.FC<Props> = ({ setStep, setUserData, userData }) => {
           <Button
             className={cn(
               "p-6 text-xl",
-              numberOfStrands === "3-core" && "bg-[#5A8EED]",
+              numberOfStrands === "3-core" ? "bg-[#00215F] text-white" : "",
             )}
             value="3-core"
             onClick={() => setNumberOfStrands("3-core")}

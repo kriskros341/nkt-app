@@ -45,33 +45,21 @@ const VerticalLine: React.FC = (props: { setStep: any; step: number }) => {
           <li
             onClick={() => {}}
             className={
+              props.step === 3
+                ? "green-text"
+                : props.step > 3
+                ? "text-black"
+                : "text-gray-400"
+            }
+          >
+            Temperatura otoczenia i rezystywność cieplna gruntu
+          </li>
+          <li
+            onClick={() => {}}
+            className={
               props.step === 4
                 ? "green-text"
                 : props.step > 4
-                ? "text-black"
-                : "text-gray-400"
-            }
-          >
-            Temperatura otoczenia
-          </li>
-          <li
-            onClick={() => {}}
-            className={
-              props.step === 5
-                ? "green-text"
-                : props.step > 5
-                ? "text-black"
-                : "text-gray-400"
-            }
-          >
-            Rezystywność cieplna gruntu w jednostce
-          </li>
-          <li
-            onClick={() => {}}
-            className={
-              props.step === 6
-                ? "green-text"
-                : props.step > 6
                 ? "text-black"
                 : "text-gray-400"
             }
