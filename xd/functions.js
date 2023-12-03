@@ -32,13 +32,14 @@ const D1D2cables = temperatureObj["temperatura otoczenia (powietrza) st C"]
 
 export function algorithm1(input, temperatura) {
     var k=1;
+    
     /* if Iobl given*/
     /* if P and cos(fi) given*/
     const index = EFcables.indexOf(input["przewód/kabel"])
     const index2 = D1D2cables.indexOf(input["przewód/kabel"])
 
     const metodaReferencyjna = input["metoda referencyjna"];
-    console.log(input)
+    
     if(metodaReferencyjna=="E"||"F") {
         k *= parseFloat(temperatureObj[temperatura][index])
     }
@@ -46,10 +47,24 @@ export function algorithm1(input, temperatura) {
         k*= parseFloat(obwodyObj[input["Liczba przewodów wielożyłowych"]])
     }
     if(metodaReferencyjna=="D1"||"D2"){
-        k*=temperatureGruntObj[temperatura][index2]
+        k*=parseFloat(temperatureGruntObj[temperatura][index2])
     }
+    console.log(k)
+    return k;
 }
-
+export function final(input, temperatura){
+    var Iobl;
+    var P = 1;
+    var cosfi = 0.8;
+    const obwod = input["obwód"];
+    if(obwod=="1 fazowy") {
+        Iobl = P/(230*cosfi);
+    }
+    else {
+        Iobl = P/(sqrt(3)*400*cosfi)
+    }
+    return Iobl*algorithm1(input, temperatura)*0.85;
+}
 // function algorithm2(input) {
 //     var k=1;
 //     /* if Iobl given*/

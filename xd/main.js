@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { algorithm1 } from './functions.js'
+import { final } from './functions.js'
 
 // obwod: - "1 fazowy" | "3 fazowy"
 // metoda: - "A1", "A2", "B1", "B2"
@@ -36,7 +36,7 @@ const CSVtoObj = (csv) => {
 const EXCEL_DELIMITER = ';'
 const SHEETS_DELIMITER = '\t'
 
-const input = {
+let input = {
     "obwód": "1 fazowy",
     "metoda referencyjna": "E",
     "izolacja": "XLPE",
@@ -55,6 +55,7 @@ const test = (specificationFilePath, referenceFilePath) => {
     const specification = CSVtoObj(specificationMatrix);
     const reference = CSVtoObj(referenceMatrix)
 
+    console.log(specification)
     const indexes = getFilteredIndexes(specification, input)
     const specificationKeys = Object.keys(specification)
     const values = specificationMatrix.map((row) => row.filter((_, index) => indexes.includes(index-1)))
@@ -62,8 +63,20 @@ const test = (specificationFilePath, referenceFilePath) => {
     return Object.fromEntries(transpose(g))
     //const result = Object.fromEntries()
 }
-const res = test("SPECIFICATION.tsv", "REFERENCE.tsv")
-res["Liczba przewodów wielożyłowych"] = '3' // ????????SKAD?????
-algorithm1(res, '40');
+
+
+
+const c = {
+    "installationMethod": "metoda referencyjna",
+    "metal": "rodzaj żyły (metal)",
+    "insulator": "izolacja",
+    "numberOfStrands": ""
+
+}
+
+input = test("SPECIFICATION.tsv", "REFERENCE.tsv")
+input["Liczba przewodów wielożyłowych"] = '3' // ????????SKAD?????
+const temperature = 30
+console.log(final(input, temperature));
 // const nazwa = "ydy"
 // const nazwa = "ntk"
