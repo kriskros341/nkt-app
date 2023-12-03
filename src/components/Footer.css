@@ -1,0 +1,49 @@
+.Footer {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 4rem;
+    left: 0px;
+    background-color: #00215F;
+}
+
+Footer .left {
+    display: inline-block;
+    padding: 1.5% 2%;
+}
+
+Footer .center {
+    display: inline-block;
+    padding: 1.5% 2% 1.5% 30%;
+    text-align: center;
+}
+
+.horizontal-mini {
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 82.58%;
+    bottom: 39.58%;
+    border: 1px solid #FF8D07;
+}
+
+.rotated1 {
+    position: absolute;
+    left: 60.14%;
+    right: 18.42%;
+    top: 100%;
+    bottom: 0%;
+    border: 1px solid #FF8D07;
+    transform: rotate(-45.25deg);
+}
+
+.rotated2 {
+    position: absolute;
+    left: 67.64%;
+    right: 8.92%;
+    top: 100%;
+    bottom: 0%;
+    border: 1px solid #FF8D07;
+    transform: rotate(-45.25deg);
+}
+
