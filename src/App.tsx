@@ -4,9 +4,7 @@ import { Choice, UserData } from "./types";
 import { copperChoice } from "./const";
 import Footer from "./components/Footer";
 import VerticalLine from "./components/VerticalLine";
-import ActionTitleLine from "./components/ActionTitleLine";
 import StepTwo from "./step-two";
-import StepThree from "./step-three";
 import StepFour from "./step-four";
 import StepFive from "./step-five";
 import StepSix from "./step-six";
@@ -27,13 +25,6 @@ function App() {
     ),
     () => (
       <StepTwo
-        setStep={setStep}
-        setUserData={setUserData}
-        userData={userData}
-      />
-    ),
-    () => (
-      <StepThree
         setStep={setStep}
         setUserData={setUserData}
         userData={userData}
@@ -65,13 +56,13 @@ function App() {
   console.log(userData);
 
   return (
-    <main className="flex flex-col h-screen">
-      <div style={{flex: "100%"}} className="flex justify-center gap-4">
-        <div style={{ flex: 5 }} className="p-24">
-          <ActionTitleLine />
+    <main className="flex flex-col w-full h-screen">
+      <div className="flex justify-between w-full gap-4">
+        <div className="py-24 pl-20 w-[50%]">
+          {/* <ActionTitleLine /> */}
           {steps[step]()}
         </div>
-        <div style={{ flex: 4 }} className="sticky top-0 h-screen">
+        <div style={{ flex: 4 }} className="sticky top-0 h-screen ml-4">
           <VerticalLine step={step} setStep={setStep} />
         </div>
       </div>

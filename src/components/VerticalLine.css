@@ -1,7 +1,11 @@
 .vertical-line {
-    background-color: #FF8D07;
-  }
+  background-color: #ff8d07;
+}
 
 .green-text {
-    color: green;
+  color: green;
+}
+
+li {
+  font-size: 1.25rem;
 }

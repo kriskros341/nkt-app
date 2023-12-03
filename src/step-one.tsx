@@ -59,13 +59,13 @@ const StepOne: React.FC<Props> = ({
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
-        <div className="flex flex-col gap-6 items-start">
+        <div className="flex flex-col items-start gap-6">
           <FormField
             control={form.control}
             name="metal"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Rodzaj metalu</FormLabel>
+                <FormLabel className="text-xl">Rodzaj metalu</FormLabel>
                 <FormControl>
                   <div className="flex gap-6">
                     <Button
