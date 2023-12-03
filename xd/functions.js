@@ -40,14 +40,17 @@ export function algorithm1(input, temperatura) {
     const metodaReferencyjna = input["metoda referencyjna"];
     console.log(input)
     if(metodaReferencyjna=="E"||"F") {
-        k *= parseFloat(temperatureObj[temperatura][index])
+        k *= parseFloat(temperatureObj[temperatura][index].replace(",", "."))
     }
     if(metodaReferencyjna != "D1"||"D2"){
-        k*= parseFloat(obwodyObj[input["Liczba przewodów wielożyłowych"]])
+        console.log(obwodyObj[input["Liczba przewodów wielożyłowych"]])
+        k*= parseFloat(obwodyObj[input["Liczba przewodów wielożyłowych"]].replace(",", "."))
     }
     if(metodaReferencyjna=="D1"||"D2"){
-        k*=temperatureGruntObj[temperatura][index2]
+        console.log(temperatureGruntObj[temperatura][index2])
+        k*=parseFloat(temperatureGruntObj[temperatura][index2].replace(",", "."))
     }
+    console.log(k)
 }
 
 // function algorithm2(input) {

@@ -38,9 +38,9 @@ const SHEETS_DELIMITER = '\t'
 
 const input = {
     "obwód": "1 fazowy",
-    "metoda referencyjna": "E",
+    "metoda referencyjna": "D1",
     "izolacja": "XLPE",
-    "rodzaj żyły (metal)": "Al."
+    "rodzaj żyły (metal)": "Cu"
 }
 function transpose(matrix) {
     return matrix[0].map((col, c) => matrix.map((row, r) => matrix[r][c]));
@@ -58,8 +58,13 @@ const test = (specificationFilePath, referenceFilePath) => {
     const indexes = getFilteredIndexes(specification, input)
     const specificationKeys = Object.keys(specification)
     const values = specificationMatrix.map((row) => row.filter((_, index) => indexes.includes(index-1)))
-    const g = [specificationKeys, values.flat()]
-    return Object.fromEntries(transpose(g))
+
+    const referenceKeys = Object.keys(reference)
+    const values2 = referenceMatrix.map((row) => row.filter((_, index) => indexes.includes(index-1)))
+    const resultObj1 = Object.fromEntries(transpose([specificationKeys, values.flat()]))
+    const resultObj2 = Object.fromEntries(transpose([referenceKeys, values2.flat()]))
+    return {...resultObj1, ...resultObj2}
+    
     //const result = Object.fromEntries()
 }
 const res = test("SPECIFICATION.tsv", "REFERENCE.tsv")
