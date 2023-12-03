@@ -1,11 +1,10 @@
 import fs from 'fs'
-
+import { algorithm1 } from './functions.js'
 
 // obwod: - "1 fazowy" | "3 fazowy"
 // metoda: - "A1", "A2", "B1", "B2"
 
 const getMatchingIndexes = (obj, key, value, indexes) => {
-    console.log(obj)
     if (!indexes) {
         indexes = obj[key].map((_, i) => i);
     }
@@ -37,6 +36,15 @@ const CSVtoObj = (csv) => {
 const EXCEL_DELIMITER = ';'
 const SHEETS_DELIMITER = '\t'
 
+const input = {
+    "obwód": "1 fazowy",
+    "metoda referencyjna": "E",
+    "izolacja": "XLPE",
+    "rodzaj żyły (metal)": "Al."
+}
+function transpose(matrix) {
+    return matrix[0].map((col, c) => matrix.map((row, r) => matrix[r][c]));
+  }
 const test = (specificationFilePath, referenceFilePath) => {
 
     const specificationValues = fs.readFileSync(specificationFilePath);
@@ -47,20 +55,15 @@ const test = (specificationFilePath, referenceFilePath) => {
     const specification = CSVtoObj(specificationMatrix);
     const reference = CSVtoObj(referenceMatrix)
 
-    const input = {
-        "obwód": "1 fazowy",
-        "metoda referencyjna": "A2",
-        "izolacja": "XLPE",
-        "rodzaj żyły (metal)": "Al."
-    }
-
     const indexes = getFilteredIndexes(specification, input)
-    console.log(indexes)
-    console.log(referenceMatrix.map((row) => row.filter((_, index) => indexes.includes(index-1))))
+    const specificationKeys = Object.keys(specification)
+    const values = specificationMatrix.map((row) => row.filter((_, index) => indexes.includes(index-1)))
+    const g = [specificationKeys, values.flat()]
+    return Object.fromEntries(transpose(g))
+    //const result = Object.fromEntries()
 }
-
+const res = test("SPECIFICATION.tsv", "REFERENCE.tsv")
+res["Liczba przewodów wielożyłowych"] = '3' // ????????SKAD?????
+algorithm1(res, '40');
 // const nazwa = "ydy"
 // const nazwa = "ntk"
-const nazwa = "yky"
-
-test(`SPECIFICATION.tsv`, `REFERENCE.tsv`)
