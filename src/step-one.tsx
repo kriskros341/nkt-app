@@ -58,8 +58,8 @@ const StepOne: React.FC<Props> = ({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
-        <div className="flex flex-col items-start gap-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 mt-8">
+        <div className="flex flex-col items-start gap-12 mt-4">
           <FormField
             control={form.control}
             name="metal"
@@ -67,11 +67,10 @@ const StepOne: React.FC<Props> = ({
               <FormItem>
                 <FormLabel className="text-xl">Rodzaj metalu</FormLabel>
                 <FormControl>
-                  <div className="flex gap-6">
+                  <div className="flex gap-6 mt-6">
                     <Button
                       className={cn(
-                        choice.metal === "Cu" &&
-                          "bg-[#FF8D07] hover:bg-[#FCB665]",
+                        choice.metal === "Cu" && "bg-primary text-white",
                       )}
                       size="lg"
                       value="Cu"
@@ -87,8 +86,7 @@ const StepOne: React.FC<Props> = ({
                     </Button>
                     <Button
                       className={cn(
-                        choice.metal === "Al" &&
-                          "bg-[#FF8D07] hover:bg-[#FCB665]",
+                        choice.metal === "Al" && "bg-primary text-white",
                       )}
                       size="lg"
                       value="Al"
@@ -111,22 +109,22 @@ const StepOne: React.FC<Props> = ({
             name="type"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>typ</FormLabel>
+                <FormLabel className="text-xl">Nazwa przewodu/kabla</FormLabel>
                 <Select
                   onValueChange={(e) => field.onChange(e)}
                   defaultValue={field.value}
                 >
                   <FormControl>
-                    <SelectTrigger className="w-[280px]">
-                      <SelectValue placeholder="" className="text-black" />
+                    <SelectTrigger className="w-[280px] bg-white">
+                      <SelectValue className="text-gray-100" />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent>
+                  <SelectContent className="bg-white">
                     {choice.choices.map((choice) => (
                       <SelectItem
                         key={choice}
                         value={choice.toLowerCase()}
-                        className="text-black text-md"
+                        className="text-black cursor-pointer text-md"
                       >
                         {choice}
                       </SelectItem>
@@ -137,9 +135,9 @@ const StepOne: React.FC<Props> = ({
               </FormItem>
             )}
           />
-          <div>
-            <Button type="submit" className="text-black ">
-              Dalej
+          <div className="flex items-center justify-start gap-4">
+            <Button className="p-6 text-xl" type="submit">
+              Kontynuuj
             </Button>
           </div>
         </div>
