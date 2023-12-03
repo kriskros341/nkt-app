@@ -1,0 +1,9 @@
+﻿izolacja;PVC;PVC;PVC;PVC;PVC;PVC;PVC;PVC
+rodzaj żyły (metal);Cu;Cu;Cu;Cu;Cu;Cu;Cu;Cu
+temp otoczenia (powietrza);30;30;30;30;30;30;30;30
+temp. żyły ;70;70;70;70;70;70;70;70
+przewód/kabel;YDY 450/750 V;YDY 450/750 V;YDY 450/750 V;YDY 450/750 V;YDY 450/750 V;YDY 450/750 V;YDY 450/750 V;YDY 450/750 V
+obwód; 1 fazowy;3 fazowy; 1 fazowy;3 fazowy; 1 fazowy;3 fazowy; 1 fazowy;3 fazowy
+liczba żył ;3;4 lub 5;3;4 lub 5;3;4 lub 5;3;4 lub 5
+liczba żył obciążonych prądowo;2;3;2;3;2;3;2;3
+metoda referencyjna;A1;A1;A2 ;A2;B2;B2;E;E

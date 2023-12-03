@@ -1,0 +1,10 @@
+﻿izolacja;;PVC;PVC;PVC;PVC;PVC;PVC;PVC;PVC
+rodzaj żyły (metal);;Cu;Cu;Cu;Cu;Cu;Cu;Cu;Cu
+temp. otoczenia (powietrza);st C;30;30;30;30;30;30;30;30
+temp. żyły ;st C;70;70;70;70;70;70;70;70
+przewód/kabel;;YDYp 450/750 V;YDYp 450/750 V;YDYp 450/750 V;YDYp 450/750 V;YDYp 450/750 V;YDYp 450/750 V;YDYp 450/750 V;YDYp 450/750 V
+obwód;; 1 fazowy;3 fazowy; 1 fazowy;3 fazowy; 1 fazowy;3 fazowy; 1 fazowy;3 fazowy
+liczba żył ;szt;3;4 lub 5;3;4 lub 5;3;4 lub 5;3;4 lub 5
+liczba żył obciążonych prądowo;szt;2;3;2;3;2;3;2;3
+sposób instalacji ;;przewód wielożyłowy bezpośrednio w ścianie izolowanej cieplnie;przewód wielożyłowy bezpośrednio w ścianie izolowanej cieplnie;przewód wielożyłowy w rurze instalacyjnej w ścianie izolowanej cieplnie;przewód wielożyłowy w rurze instalacyjnej w ścianie izolowanej cieplnie;przewód wielożyłowy w rurze instalacyjnej/listwie naściennej na ścianie murowanej lub drewnianej;przewód wielożyłowy w rurze instalacyjnej/listwie naściennej na ścianie murowanej lub drewnianej;przewód wielożyłowy w powietrzu (korytko perforowane, siatkowe);przewód wielożyłowy w powietrzu (korytko perforowane, siatkowe)
+metoda referencyjna;;A1;A1;A2 ;A2;B2;B2;E;E
