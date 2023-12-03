@@ -29,7 +29,7 @@ const StepTwo: React.FC<Props> = ({ setStep, setUserData, userData }) => {
       <div className="flex flex-col gap-6 mt-8 ">
         <Label className="text-xl">Wybierz rodzaj tworzywa izolacyjnego</Label>
         <div className="flex gap-6 mb-6">
-          <Button
+          {!["YKXS", "N2XH", "YAKXS"].includes(userData.type.toUpperCase()) && <Button
             className={cn(
               "p-6 text-xl",
               insulator === "pvc" ? "bg-[#00215F] text-white" : "",
@@ -38,8 +38,8 @@ const StepTwo: React.FC<Props> = ({ setStep, setUserData, userData }) => {
             onClick={() => setInsulator("pvc")}
           >
             PVC
-          </Button>
-          <Button
+          </Button>}
+          {!["N2XH"].includes(userData.type.toUpperCase()) && ["YKXS", "YAKXS"].includes(userData.type.toUpperCase()) && <Button
             className={cn(
               "p-6 text-xl",
               insulator === "xlpe" ? "bg-[#00215F] text-white" : "",
@@ -48,8 +48,8 @@ const StepTwo: React.FC<Props> = ({ setStep, setUserData, userData }) => {
             onClick={() => setInsulator("xlpe")}
           >
             XLPE
-          </Button>
-          <Button
+          </Button>}
+          {["N2XH"].includes(userData.type.toUpperCase()) && <Button
             className={cn(
               "p-6 text-xl",
               insulator === "b2ca" ? "bg-[#00215F] text-white" : "",
@@ -58,7 +58,7 @@ const StepTwo: React.FC<Props> = ({ setStep, setUserData, userData }) => {
             onClick={() => setInsulator("b2ca")}
           >
             B2CA
-          </Button>
+          </Button>}
         </div>
         <Label className="mt-4 text-xl">Wybierz liczbę żył obciążonych</Label>
         <div className="flex gap-6 mb-6">
@@ -82,7 +82,7 @@ const StepTwo: React.FC<Props> = ({ setStep, setUserData, userData }) => {
           >
             3-wielożyłowy
           </Button>
-          <Button
+          {["YKY", "YKXS"].includes(userData.type.toUpperCase()) && <Button
             className={cn(
               "p-6 text-xl",
               numberOfStrands === "3-core" ? "bg-[#00215F] text-white" : "",
@@ -91,7 +91,7 @@ const StepTwo: React.FC<Props> = ({ setStep, setUserData, userData }) => {
             onClick={() => setNumberOfStrands("3-core")}
           >
             3-jednożyłowy
-          </Button>
+          </Button>}
         </div>
         <div className="flex items-center justify-start gap-4 mt-8">
           <Button

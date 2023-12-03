@@ -85,27 +85,43 @@ const StepFive: React.FC<Props> = ({ setStep, setUserData, userData }) => {
   const [temperatureType, setTemperatureType] =
     React.useState<TemperatureType>("air");
 
+  
+
+  const minimal = temperatureType === "air" ? 30 : 20
+  const maximal = userData.type === "YPY" ? "70" : "90"
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      temperature: temperatureType === "air" ? 30 : 20,
+      temperature: minimal,
     },
   });
 
-  const onSubmit = (temperatureValue: number) => {
+  const onSubmit = (temperatureValue: any) => {
     setStep((n) => n + 1);
-    setUserData({
+    let val = temperatureValue.temperature;
+    if (val < minimal) {
+      val = minimal
+    }
+    if (val > maximal) {
+      val = maximal
+    }
+    const newObj = {
       ...userData,
       temperatureType,
-      temperatureValue: temperatureValue,
-    });
+      temperatureValue: temperatureValue.temperature, 
+    }
+    if (temperatureType === "ground") {
+      newObj["thermalResistivity"] = thermalResistivity
+    }
+    setUserData(newObj);
   };
 
   return (
     <Form {...form}>
       <form className="flex gap-12 flex-col items-start" onSubmit={form.handleSubmit(onSubmit)}>
         <div className="flex flex-row gap-6">
-          <Button
+          {!["D2", "D1"].includes(userData.installationMethod) && <Button
             type="button"
             onClick={() => setTemperatureType("air")}
             className={cn(
@@ -113,8 +129,8 @@ const StepFive: React.FC<Props> = ({ setStep, setUserData, userData }) => {
             )}
           >
             Temperatura otoczenia
-          </Button>
-          <Button
+          </Button>}
+          {["D2", "D1"].includes(userData.installationMethod) && <Button
             type="button"
             onClick={() => setTemperatureType("ground")}
             className={cn(
@@ -122,7 +138,7 @@ const StepFive: React.FC<Props> = ({ setStep, setUserData, userData }) => {
             )}
           >
             Temperatura gruntu
-          </Button>
+          </Button>}
         </div>
         <FormField
           control={form.control}
@@ -131,12 +147,12 @@ const StepFive: React.FC<Props> = ({ setStep, setUserData, userData }) => {
             <FormItem>
               <FormLabel>Temperatura</FormLabel>
               <FormControl>
-                <Input type="number" placeholder="temperatura" {...field} />
+                <Input type="number" placeholder="temperatura" {...field} min="10" max={userData.type === "YPY" ? "70" : "90"} step="5" onKeyDown={(e) => e.preventDefault()} />
               </FormControl>
               <FormMessage className="text-gray-700" />
             </FormItem>
           )}
-        />
+          />
         {temperatureType === "ground" && (
           <div>
             <div className="text-xl mb-6">Wartosc rezystencji cieplnej {thermalResistivity}</div>
@@ -146,7 +162,7 @@ const StepFive: React.FC<Props> = ({ setStep, setUserData, userData }) => {
               min={0}
               max={6}
               setValue={setThermalResistivity}
-            />
+              />
           </div>
         )}
         <div className="flex items-center justify-start gap-4 mt-8">
@@ -155,7 +171,7 @@ const StepFive: React.FC<Props> = ({ setStep, setUserData, userData }) => {
             onClick={() => {
               setStep((n) => n - 1);
             }}
-          >
+            >
             Wróć
           </Button>
           <Button className="p-6 text-xl" type="submit">
@@ -164,6 +180,7 @@ const StepFive: React.FC<Props> = ({ setStep, setUserData, userData }) => {
         </div>
       </form>
       
+      <div className="mt-8">temperatura wykrazająca poza przedział zostanie ustawiona na jego granicy*</div  >   
     </Form>
   );
 };

@@ -51,7 +51,7 @@ const StepOne: React.FC<Props> = ({
   const onSubmit = (data: z.infer<typeof FormSchema>) => {
     setStep((n) => n + 1);
     setUserData({
-      metal: data.metal,
+      metal: data.type === "yakxs" ? "Cu" : "Al",
       type: data.type,
     });
   };

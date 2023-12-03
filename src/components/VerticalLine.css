@@ -9,3 +9,9 @@
 li {
   font-size: 1.25rem;
 }
+
+@media (max-width: 740px) {
+  .hidemeonsmall {
+    display:none !important;
+  }
+}

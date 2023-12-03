@@ -3,7 +3,7 @@ import './Footer.css';
 
 const Footer: React.FC = () => {
   return (
-    <footer style={{flex: "0 0 4rem"}} className="Footer inner-shadow sticky bottom-0">
+    <footer style={{flex: "0 0 4rem"}} className="Footer inner-shadow fixed bottom-0">
       <ul>
         <li className="left text-white"><a href="https://www.nkt.com.pl/o-nas">O Nas</a></li>
         <li className="left text-white"><a href="https://www.nkt.com.pl/kontakt">Kontakt</a></li>

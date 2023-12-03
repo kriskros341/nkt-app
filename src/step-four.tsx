@@ -54,9 +54,21 @@ const StepFour: React.FC<Props> = ({ setStep, setUserData, userData }) => {
     });
   };
 
+  const shortOnes = ["YDY", "YDYP", "N2XH"]
+  const bannedForShort = ["D1", "D2", "F"]
+  const next: any[] = []
+  installationMethods.forEach((row) => {
+    if (shortOnes.includes(userData.type.toUpperCase())) {
+      if (bannedForShort.includes(row.header)) {
+        return;
+      }
+    }
+    next.push(row)
+  })
+
   return (
     <div className="flex flex-col flex-none gap-6">
-      {installationMethods.map((installationM) => {
+      {next.map((installationM) => {
         return (
           <Button
             key={installationM.header}

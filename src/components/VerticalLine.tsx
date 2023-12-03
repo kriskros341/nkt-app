@@ -3,7 +3,7 @@ import "./VerticalLine.css";
 
 const VerticalLine: React.FC = (props: { setStep: any; step: number }) => {
   return (
-    <div className="flex h-full justify-stretch">
+    <div className="flex h-full justify-stretch hidemeonsmall">
       <div style={{ flex: 4 }} className="h-full">
         <ul className="flex flex-col h-full gap-12 py-32 mr-2">
           <li
@@ -57,9 +57,21 @@ const VerticalLine: React.FC = (props: { setStep: any; step: number }) => {
           <li
             onClick={() => {}}
             className={
-              props.step === 4
+              props.step === 4 || props.step === 5
                 ? "green-text"
-                : props.step > 4
+                : props.step > 5
+                ? "text-black"
+                : "text-gray-400"
+            }
+          >
+            finalizacja
+          </li>
+          <li
+            onClick={() => {}}
+            className={
+              props.step === 6
+                ? "green-text"
+                : props.step > 6
                 ? "text-black"
                 : "text-gray-400"
             }
